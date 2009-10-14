@@ -1,0 +1,26 @@
+<script>
+chrome.extension.onConnect.addListener(onPortConnect);
+
+/**
+ * Add message callback on connection opening.
+ */
+function onPortConnect(port) {
+  console.log('onPortConnect');
+  port.onMessage.addListener(onMessageRecieved);
+};
+
+/**
+ * Fetch intersect.
+ */
+function onMessageRecieved(msg,port) {
+  console.log('onMessageRecieved');
+  var path = 'http://intersect.labs.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    console.log('onload');
+    port.postMessage({sg: JSON.parse(xhr.responseText)});
+  }
+  xhr.open("GET", path, true);
+  xhr.send();
+};
+</script>
