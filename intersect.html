@@ -1,26 +1,75 @@
-<script>
+﻿<script>
 chrome.extension.onConnect.addListener(onPortConnect);
 
 /**
  * Add message callback on connection opening.
  */
 function onPortConnect(port) {
-  console.log('onPortConnect');
   port.onMessage.addListener(onMessageRecieved);
-};
+  checkin();
+}
 
 /**
  * Fetch intersect.
  */
 function onMessageRecieved(msg,port) {
+  //localStorage.clear();
   console.log('onMessageRecieved');
-  var path = 'http://intersect.labs.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
+  var path = 'http://intersect.dev.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
-    console.log('onload');
+    console.log('onMessageRecieved:onload');
     port.postMessage({sg: JSON.parse(xhr.responseText)});
   }
   xhr.open("GET", path, true);
   xhr.send();
-};
+}
+
+/**
+ * Checkin with Intersect as being an active install.
+ */
+function checkin() {
+  console.log('checkin');
+  // If iid does not exist get one
+  if (!localStorage.getItem('intersect_iid')) {
+    var path = 'http://intersect.dev.poseurtech.com/statistics/usage/new';
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if (xhr.responseText) {
+        var time = new Date;
+        localStorage.setItem('intersect_iid', xhr.responseText);
+        localStorage.setItem('intersect_touch', time.getTime());
+      }
+    }
+    xhr.open("GET", path, true);
+    xhr.send();    
+  // else checkin longer then 48 hours
+  } else if (checkinExpired()) {
+    var iid = localStorage.getItem('intersect_iid');
+    var path = 'http://intersect.dev.poseurtech.com/statistics/usage/checkin/' + iid;
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if (xhr.responseText) {
+        var time = new Date;
+        localStorage.setItem('intersect_touch', time.getTime());
+      }
+    }
+    xhr.open("GET", path, true);
+    xhr.send(); 
+  }
+}
+
+/**
+ * Return true if time to checkin again.
+ */
+function checkinExpired() {
+  console.log('checkinExpire');
+  var time = new Date;
+  if (localStorage.getItem('intersect_touch') 
+      && localStorage.getItem('intersect_touch') + 60 * 60 * 48 < time.getTime()) {
+    return true;
+  } else {
+    return false;
+  }
+}
 </script>

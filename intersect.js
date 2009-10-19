@@ -24,12 +24,12 @@ function activate() {
   } else if (!session) {
     console.log('Not authenciated');
 
-    content = buildSimpleContent('You must log into Twittter for Intersect to work.', '/login', 'Login here.');
+    content = buildSimpleContent('You must log into Twittter for Intersect to work.', {href: '/login', title: 'Login'}, 'now.');
   // else if user is view thier own profile
   } else if (window.location.pathname == "/" || page.content === session.content) {
     console.log('Viewing own profile');
 
-    content = buildSimpleContent('This is your profile silly! Why not try', '/invitations/find_on_twitter', 'looking for a different one.');
+    content = buildSimpleContent('This is your profile silly! Why not try', {href: '/invitations/find_on_twitter', title: 'searching'}, 'for a different one.');
   // else build social graph intersect
   } else {
     console.log('fetching social graph');
@@ -60,7 +60,7 @@ function onMessageRecieved(msg, port) {
   if (sg && sg.followers) {
     content = buildUserContent('following_list', sg.followers);
   } else {
-    content = buildSimpleContent('No results :( Try', '/invitations/find_on_twitter', 'finding more people to follow.');
+    content = buildSimpleContent('No results :( Try', {href: "/home?status=What's+YOUR+Intersect?+http://intersect.labs.poseurtech.com+%23intersect+%23twitter", title: 'tweeting'}, 'something interesting.');
   }
   footer = buildFooter('Follow @abraham...', '/abraham');
   attachBlock(buildBlock(header, content, footer));
@@ -69,7 +69,7 @@ function onMessageRecieved(msg, port) {
   if (sg && sg.friends) {
     content = buildUserContent('following_list', sg.friends);
   } else {
-    content = buildSimpleContent('No results :( Try', '/invitations/find_on_twitter', 'finding more people to follow.');
+    content = buildSimpleContent('No results :( Try', {href: '/invitations/find_on_twitter', title: 'finding'}, 'more people to follow.');
   }
   footer = buildFooter('Intersect Home...', 'http://intersect.labs.poseurtech.com');
   attachBlock(buildBlock(header, content, footer));
@@ -95,27 +95,25 @@ function buildBlock(header, content, footer) {
 /**
  * Build simple content.
  */
-function buildSimpleContent(text, href, title) {
+function buildSimpleContent(pre, link, post) {
   console.log('buildSimpleContent');
 
-  // build the textNode;
-  var textNode = document.createTextNode(title);
+  // build the textNodes;
+  var textNode = document.createTextNode(link.title);
 
   // build the <a>
   var a = document.createElement('a');
-  a.setAttribute('href', href);
+  a.setAttribute('href', link.href);
   a.className = 'url';
   a.setAttribute('hreflang', 'en');
-  a.setAttribute('title', title);
+  a.setAttribute('title', link.title);
   a.appendChild(textNode);
-
-  // build the textNode;
-  textNode = document.createTextNode(text+' ');
 
   // build the <span>
   var span = document.createElement('span');
-  span.appendChild(textNode);
+  span.appendChild(document.createTextNode(pre + ' '));
   span.appendChild(a);
+  span.appendChild(document.createTextNode(' ' + post));
 
   // build the <div>
   var div = document.createElement('div');
