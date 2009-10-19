@@ -15,7 +15,7 @@ function onPortConnect(port) {
 function onMessageRecieved(msg,port) {
   //localStorage.clear();
   console.log('onMessageRecieved');
-  var path = 'http://intersect.dev.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
+  var path = 'http://intersect.labs.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     console.log('onMessageRecieved:onload');
@@ -32,7 +32,7 @@ function checkin() {
   console.log('checkin');
   // If iid does not exist get one
   if (!localStorage.getItem('intersect_iid')) {
-    var path = 'http://intersect.dev.poseurtech.com/statistics/usage/new';
+    var path = 'http://intersect.labs.poseurtech.com/statistics/usage/new';
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
       if (xhr.responseText) {
