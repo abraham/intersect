@@ -30,8 +30,9 @@ function onMessageRecieved(msg,port) {
  */
 function checkin() {
   console.log('checkin');
+
   // If iid does not exist get one
-  if (!localStorage.getItem('intersect_iid')) {
+  if (!localStorage.getItem('intersect_iid')  || localStorage.getItem('intersect_iid').length < 30) {
     var path = 'http://intersect.labs.poseurtech.com/statistics/usage/new';
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
@@ -64,9 +65,9 @@ function checkin() {
  */
 function checkinExpired() {
   console.log('checkinExpire');
+
   var time = new Date;
-  if (localStorage.getItem('intersect_touch') 
-      && localStorage.getItem('intersect_touch') + 60 * 60 * 48 < time.getTime()) {
+  if (parseInt(localStorage.getItem('intersect_touch')) + 60 * 60 * 48 < time.getTime()) {
     return true;
   } else {
     return false;
