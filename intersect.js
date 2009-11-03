@@ -30,7 +30,7 @@ function activate() {
   } else if (window.location.pathname == "/" || page.content === session.content) {
     console.log('Viewing own profile');
 
-    content = buildSimpleContent('Shiny! You found your profile. Why not try ', {href: '/invitations/find_on_twitter', title: 'finding'}, ' a different one.');
+    content = buildSimpleContent('Shiny! You found your profile. Why not try ', {href: '/invitations/find_on_twitter', title: 'finding'}, ' a different one?');
   // else build social graph intersect
   } else {
     console.log('fetching social graph');
