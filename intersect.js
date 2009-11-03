@@ -30,7 +30,7 @@ function activate() {
   } else if (window.location.pathname == "/" || page.content === session.content) {
     console.log('Viewing own profile');
 
-    content = buildSimpleContent('This is your profile silly! Why not try', {href: '/invitations/find_on_twitter', title: 'searching'}, 'for a different one.');
+    content = buildSimpleContent('Shiny! You found your profile. Why not try ', {href: '/invitations/find_on_twitter', title: 'finding'}, ' a different one.');
   // else build social graph intersect
   } else {
     console.log('fetching social graph');
@@ -228,10 +228,18 @@ function attachBlock(block) {
 
   // find following div and add block after it
   var following = document.getElementById('following');
+
+  // create hr node
+  var hr = document.createElement('hr');
+
   // keep from adding to the end of the page if nextSibling does not exist
   if (following.nextSibling) {
     following.parentNode.insertBefore(block, following.nextSibling);
-    following.parentNode.insertBefore(document.createElement('hr'), following.nextSibling);
+    following.parentNode.insertBefore(hr, following.nextSibling);
+  } else {
+    var side = document.getElementById('side');
+    side.appendChild(hr);
+    side.appendChild(block);
   }
 }
 
