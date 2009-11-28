@@ -6,7 +6,7 @@
   "permissions": [
     "http://intersect.labs.poseurtech.com/*"
   ],
-  "background_page": "intersect.html",
+  "background_page": "background.html",
   "content_scripts": [
     {
       "matches": [
