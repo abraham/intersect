@@ -1,6 +1,6 @@
 {
   "name": "Intersect",
-  "version": "6",
+  "version": "7",
   "description": "Display mutual friends and followers on Twitter profiles.",
   "permissions": [
     "http://intersect.labs.poseurtech.com/*"
