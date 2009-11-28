@@ -131,16 +131,13 @@ function buildSimpleContent(pre, link, post) {
 function buildProcessingContent() {
   console.log('buildProcessingContent');
   
-  // get loading.gif url
-  var loading = chrome.extension.getURL('loading.gif');
-
   // build the <img>
   var img = document.createElement('img');
   img.setAttribute('alt', 'Loading...');
   img.className = 'photo fn';
-  img.setAttribute('height', 24);
-  img.setAttribute('src', loading);
-  img.setAttribute('width', 24);
+  img.setAttribute('height', 14);
+  img.setAttribute('src', 'https://twitter.com/images/spinner.gif');
+  img.setAttribute('width', 14);
 
   // build the <span>
   var span = document.createElement('span');

@@ -1,21 +1,29 @@
 {
   "name": "Intersect",
-  "version": "4",
+  "version": "5",
   "description": "Display mutual friends and followers on Twitter profiles.",
   "update_url": "http://intersect.labs.poseurtech.com/updates.xml",
   "permissions": [
     "http://intersect.labs.poseurtech.com/*"
   ],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "64": "icon64.png"
+  },
   "background_page": "background.html",
   "content_scripts": [
     {
       "matches": [
-	"https://twitter.com/*", 
-	"https://www.twitter.com/*",
-	"http://twitter.com/*", 
-	"http://www.twitter.com/*"
+	      "https://twitter.com/*", 
+	      "https://www.twitter.com/*",
+	      "http://twitter.com/*", 
+	      "http://www.twitter.com/*"
       ],
-      "js": ["intersect.js"]
+      "js": [
+        "intersect.js"
+      ]
     }
   ]
 }

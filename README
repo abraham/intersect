@@ -23,28 +23,32 @@ Return Data:
     "id": "6633812",
     "screen_name": "jazzychad",
     "name": "Chad",
-    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/28332812\/addisontodd_mini.jpg",
+    "profile_image_url": "http:\/\/twivatar.org\/jazzychad\/mini",
+    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/28332812\/addisontodd_mini.jpg",
     "cached_at": "1255517354"
   },
   {
     "id": "8285392",
     "screen_name": "raffi",
     "name": "raffi",
-    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/364041028\/raffi-headshot-casual_mini.png",
+    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/364041028\/raffi-headshot-casual_mini.png",
+    "profile_image_url": "http:\/\/twavatar.org\/raffi\/mini",
     "cached_at": "1255517354"
   }],
   "followers": [{
     "id": "81400225",
     "screen_name": "rapmodels",
     "name": "RapModels.net",
-    "profile_image_url": "http:\/\/a3.twimg.com\/profile_images\/463691039\/estherb_mini.jpg",
+    "original_profile_image_url": "http:\/\/a3.twimg.com\/profile_images\/463691039\/estherb_mini.jpg",
+    "profile_image_url": "http:\/\/twavatar.org\/rapmodels\/mini",
     "cached_at": "1255517354"
   },
   {
     "id": "14179036",
     "screen_name": "gregtarnoff",
     "name": "Greg Tarnoff",
-    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/339611842\/n597821109_2557838_4604496_mini.jpg",
+    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/339611842\/n597821109_2557838_4604496_mini.jpg",
+    "profile_image_url": "http:\/\/twavatar.org\/gregtarnoff\/mini",
     "cached_at": "1255517317"
   }]
 }
