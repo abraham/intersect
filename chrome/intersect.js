@@ -57,22 +57,32 @@ function onMessageRecieved(msg, port) {
   intersect.parentNode.removeChild(intersect.previousSibling);
   intersect.parentNode.removeChild(intersect);
 
-  header = buildHeader('Mutual Followers');
+
+  header = buildHeader('Mutual followers');
   if (sg && sg.followers) {
     content = buildUserContent('following_list', sg.followers);
   } else {
     content = buildSimpleContent('No results :( Try', {href: "/home?status=What's+YOUR+Intersect?+http://intersect.labs.poseurtech.com+%23intersect+%23twitter", title: 'tweeting'}, 'something interesting.');
   }
-  footer = buildFooter('Follow @abraham...', '/abraham');
+  footer = buildFooter('Twitter home...', '/');
   attachBlock(buildBlock(header, content, footer));
 
-  header = buildHeader('Mutual Friends');
+  header = buildHeader('Mutual friends');
   if (sg && sg.friends) {
     content = buildUserContent('following_list', sg.friends);
   } else {
     content = buildSimpleContent('No results :( Try', {href: '/invitations/find_on_twitter', title: 'finding'}, 'more people to follow.');
   }
-  footer = buildFooter('Intersect Home...', 'http://intersect.labs.poseurtech.com');
+  footer = buildFooter('Follow @abraham...', '/abraham');
+  attachBlock(buildBlock(header, content, footer));
+
+  header = buildHeader('Friends following');
+  if (sg && sg.followers) {
+    content = buildUserContent('following_list', sg.friends_following);
+  } else {
+    content = buildSimpleContent('No results :( Try', {href: '/invitations/find_on_twitter', title: 'finding'}, 'more people to follow.');
+  }
+  footer = buildFooter('Intersect home...', 'http://intersect.labs.poseurtech.com');
   attachBlock(buildBlock(header, content, footer));
 }
 
