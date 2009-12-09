@@ -11,44 +11,40 @@ Intersects are limited to the 5000 most recent friends and followers of each acc
 
 API
 ----------
-Doing something interesting with this API? Let me know: intersect@poseurte.ch.
+Doing something with this API? Let me know by email intersect@poseurte.ch or on Twitter @abraham.
 
-URL format:
-http://intersect.labs.poseurtech.com/v1/screen_name/screen_name
-URL example:
-http://intersect.labs.poseurtech.com/v1/abraham/twitterapi
+URL format: http://intersect.labs.poseurtech.com/version/user_screen_name/profile_screen_name
+
+URL example: http://intersect.labs.poseurtech.com/1/abraham/twitterapi
+
 Return Data:
 {
   "friends": [{
     "id": "6633812",
     "screen_name": "jazzychad",
     "name": "Chad",
-    "profile_image_url": "http:\/\/twivatar.org\/jazzychad\/mini",
-    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/28332812\/addisontodd_mini.jpg",
+    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/28332812\/addisontodd_mini.jpg",
     "cached_at": "1255517354"
   },
   {
     "id": "8285392",
     "screen_name": "raffi",
     "name": "raffi",
-    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/364041028\/raffi-headshot-casual_mini.png",
-    "profile_image_url": "http:\/\/twavatar.org\/raffi\/mini",
+    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/364041028\/raffi-headshot-casual_mini.png",
     "cached_at": "1255517354"
   }],
   "followers": [{
     "id": "81400225",
     "screen_name": "rapmodels",
     "name": "RapModels.net",
-    "original_profile_image_url": "http:\/\/a3.twimg.com\/profile_images\/463691039\/estherb_mini.jpg",
-    "profile_image_url": "http:\/\/twavatar.org\/rapmodels\/mini",
+    "profile_image_url": "http:\/\/a3.twimg.com\/profile_images\/463691039\/estherb_mini.jpg",
     "cached_at": "1255517354"
   },
   {
     "id": "14179036",
     "screen_name": "gregtarnoff",
     "name": "Greg Tarnoff",
-    "original_profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/339611842\/n597821109_2557838_4604496_mini.jpg",
-    "profile_image_url": "http:\/\/twavatar.org\/gregtarnoff\/mini",
+    "profile_image_url": "http:\/\/a1.twimg.com\/profile_images\/339611842\/n597821109_2557838_4604496_mini.jpg",
     "cached_at": "1255517317"
   }]
 }

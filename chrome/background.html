@@ -6,7 +6,6 @@ chrome.extension.onConnect.addListener(onPortConnect);
  */
 function onPortConnect(port) {
   port.onMessage.addListener(onMessageRecieved);
-  checkin();
 }
 
 /**
@@ -15,7 +14,7 @@ function onPortConnect(port) {
 function onMessageRecieved(msg,port) {
   //localStorage.clear();
   console.log('onMessageRecieved');
-  var path = 'http://intersect.labs.poseurtech.com/v1/'+ msg.page + '/' + msg.session;
+  var path = 'http://intersect.labs.poseurtech.com/1/'+ msg.session + '/' + msg.page;
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     console.log('onMessageRecieved:onload');
@@ -23,54 +22,5 @@ function onMessageRecieved(msg,port) {
   }
   xhr.open("GET", path, true);
   xhr.send();
-}
-
-/**
- * Checkin with Intersect as being an active install.
- */
-function checkin() {
-  console.log('checkin');
-
-  // If iid does not exist get one
-  if (!localStorage.getItem('intersect_iid')  || localStorage.getItem('intersect_iid').length < 30) {
-    var path = 'http://intersect.labs.poseurtech.com/statistics/usage/new';
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if (xhr.responseText) {
-        var time = new Date;
-        localStorage.setItem('intersect_iid', xhr.responseText);
-        localStorage.setItem('intersect_touch', time.getTime());
-      }
-    }
-    xhr.open("GET", path, true);
-    xhr.send();    
-  // else checkin longer then 48 hours
-  } else if (checkinExpired()) {
-    var iid = localStorage.getItem('intersect_iid');
-    var path = 'http://intersect.dev.poseurtech.com/statistics/usage/checkin/' + iid;
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-      if (xhr.responseText) {
-        var time = new Date;
-        localStorage.setItem('intersect_touch', time.getTime());
-      }
-    }
-    xhr.open("GET", path, true);
-    xhr.send(); 
-  }
-}
-
-/**
- * Return true if time to checkin again.
- */
-function checkinExpired() {
-  console.log('checkinExpire');
-
-  var time = new Date;
-  if (parseInt(localStorage.getItem('intersect_touch')) + 60 * 60 * 48 < time.getTime()) {
-    return true;
-  } else {
-    return false;
-  }
 }
 </script>
