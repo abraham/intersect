@@ -77,8 +77,8 @@ function onMessageRecieved(msg, port) {
   attachBlock(buildBlock(header, content, footer));
 
   header = buildHeader('Friends following');
-  if (sg && sg.followers) {
-    content = buildUserContent('following_list', sg.friends_following);
+  if (sg && sg.users_friends_following_profile) {
+    content = buildUserContent('following_list', sg.users_friends_following_profile);
   } else {
     content = buildSimpleContent('No results :( Try', {href: '/invitations/find_on_twitter', title: 'finding'}, 'more people to follow.');
   }
